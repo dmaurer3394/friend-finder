@@ -1,0 +1,24 @@
+.body-background {
+  background-image: url(../data/images/background.png);
+  background-repeat: no-repeat;
+  background-size: 100% 185%;
+}
+
+.btn-link {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.btn-link:hover {
+  color: #9c9c9c;
+}
+
+.jumbotron {
+  margin-top: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+#quiz-container {
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+}

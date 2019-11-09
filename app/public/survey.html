@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BoJack Character Quiz</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <script
+      src="https://kit.fontawesome.com/557fe3ebab.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="../data/friends.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container" id="quiz-container">
+      <h1>Quiz Questions</h1>
+      <hr />
+      <form>
+        <h2>About You</h2>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="input" class="form-control" id="name" />
+          <small id="name-sm" class="form-text text-muted">Required</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Link to photo</label>
+          <input type="input" class="form-control" id="photo" />
+          <small id="password-sm" class="form-text text-muted">Required</small>
+        </div>
+      </form>
+      <hr />
+      <form>
+        <div class="form group">
+          <h3>Question 1</h3>
+          <p>Your mind is always buzzing with unexplored ideas and plans.</p>
+          <span id="range-number1">3</span>
+          <span id="range-text1"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range1"
+            onchange="updateRangeText(this.value, '1')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 2</h3>
+          <p>
+            Generally speaking, you rely more on your experience than your
+            imagination.
+          </p>
+          <span id="range-number2">3</span>
+          <span id="range-text2"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range2"
+            onchange="updateRangeText(this.value, '2')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 3</h3>
+          <p>
+            You find it easy to stay relaxed and focused even when there is some
+            pressure.
+          </p>
+          <span id="range-number3">3</span>
+          <span id="range-text3"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range3"
+            onchange="updateRangeText(this.value, '3')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 4</h3>
+          <p>You rarely do something just out of sheer curiosity.</p>
+          <span id="range-number4">3</span>
+          <span id="range-text4"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range4"
+            onchange="updateRangeText(this.value, '4')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 5</h3>
+          <p>People can rarely upset you.</p>
+          <span id="range-number5">3</span>
+          <span id="range-text5"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range5"
+            onchange="updateRangeText(this.value, '5')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 6</h3>
+          <p>
+            It is often difficult for you to relate to other people’s feelings.
+          </p>
+          <span id="range-number6">3</span>
+          <span id="range-text6"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range6"
+            onchange="updateRangeText(this.value, '6')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 7</h3>
+          <p>
+            In a discussion, truth should be more important than people’s
+            sensitivities.
+          </p>
+          <span id="range-number7">3</span>
+          <span id="range-text7"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range7"
+            onchange="updateRangeText(this.value, '7')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 8</h3>
+          <p>You rarely get carried away by fantasies and ideas.</p>
+          <span id="range-number8">3</span>
+          <span id="range-text8"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range8"
+            onchange="updateRangeText(this.value, '8')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 9</h3>
+          <p>
+            You think that everyone’s views should be respected regardless of
+            whether they are supported by facts or not.
+          </p>
+          <span id="range-number9">3</span>
+          <span id="range-text9"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range9"
+            onchange="updateRangeText(this.value, '9')"
+            ;
+          />
+        </div>
+        <br />
+        <div class="form group">
+          <h3>Question 10</h3>
+          <p>
+            You feel more energetic after spending time with a group of people.
+          </p>
+          <span id="range-number10">3</span>
+          <span id="range-text10"> - Neutral</span>
+          <input
+            type="range"
+            class="custom-range"
+            min="1"
+            max="5"
+            id="range10"
+            onchange="updateRangeText(this.value, '10')"
+            ;
+          />
+        </div>
+      </form>
+    </div>
+    <a class="btn btn-link" href="/api/characters">Character List API</a>
+    <span>|</span>
+    <a class="btn btn-link" href="https://github.com/dmaurer3394/friend-finder"
+      ><i class="fab fa-github"></i> Link to GitHub Repo</a
+    >
+  </body>
+</html>
