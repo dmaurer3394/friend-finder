@@ -1,7 +1,11 @@
-.body-background {
-  background-image: url(../data/images/background.png);
+.home-body-background {
+  background-image: url(/images/background.png);
   background-repeat: no-repeat;
   background-size: 100% 185%;
+}
+
+.submit-body-background {
+  background-color: #9c9c9c;
 }
 
 .btn-link {
@@ -18,7 +22,7 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-#quiz-container {
+#survey-container {
   background-color: rgba(255, 255, 255, 0.7);
   margin-top: 5px;
 }

@@ -16,25 +16,26 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="front-end.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="front-end.js"></script>
+    <script src="../server.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </head>
 
-  <body>
-    <div class="container" id="quiz-container">
+  <body class="survey-body-background">
+    <div class="container" id="survey-container">
       <h1>Quiz Questions</h1>
       <hr />
       <form>
         <h2>About You</h2>
         <div class="form-group">
           <label>Name</label>
-          <input type="input" class="form-control" id="name" />
+          <input type="text" class="form-control" id="name" />
           <small id="name-sm" class="form-text text-muted">Required</small>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Link to photo</label>
-          <input type="input" class="form-control" id="photo" />
+          <input type="text" class="form-control" id="photo" />
           <small id="password-sm" class="form-text text-muted">Required</small>
         </div>
       </form>
@@ -215,7 +216,12 @@
             ;
           />
         </div>
+        <br />
+        <button class="btn btn-outline-dark" id="submit-button" type="submit">
+          Go
+        </button>
       </form>
+      <hr />
     </div>
     <a class="btn btn-link" href="/api/characters">Character List API</a>
     <span>|</span>

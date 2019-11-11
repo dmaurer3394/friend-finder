@@ -4,9 +4,9 @@ var friends = require("../data/friends");
 
 var app = express();
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/api/characters" function(req, res) {
-    return res.json(friends);
+app.get("/api/characters", function(req, res) {
+  return res.json(friends);
 });
