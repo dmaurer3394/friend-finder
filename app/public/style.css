@@ -4,8 +4,8 @@
   background-size: 100% 185%;
 }
 
-.submit-body-background {
-  background-color: #9c9c9c;
+body {
+  background-color: #747373;
 }
 
 .btn-link {
@@ -23,6 +23,15 @@
 }
 
 #survey-container {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.9);
   margin-top: 5px;
+}
+
+#friend-photo {
+  max-width: 75%;
+  height: auto;
+}
+
+#name-div {
+  font-size: 18pt;
 }

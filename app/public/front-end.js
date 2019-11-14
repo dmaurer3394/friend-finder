@@ -1,80 +1,10 @@
-var friends = [
-  {
-    name: "BoJack Horseman",
-    photo: "../public/images/bojack-horseman.png",
-    scores: [1, 2, 3, 4, 5, 5, 4, 3, 2, 1]
-  },
-  {
-    name: "Diane Nguyen",
-    photo: "../public/images/diane-nguyen.png",
-    scores: [5, 4, 3, 2, 1]
-  },
-  {
-    name: "Mr. Peanutbutter",
-    photo: "../public/images/mr-peanutbutter.png",
-    scores: []
-  },
-  {
-    name: "Princess Carolyn",
-    photo: "../public/images/princess-carolyn.png",
-    scores: []
-  },
-  {
-    name: "Todd Chavez",
-    photo: "../public/images/todd-chavez.png",
-    scores: []
-  },
-  {
-    name:
-      "Hollyhock Manheim-Mannheim-Guerrero-Robinson-Zilberschlag-Hsung-Fonzerelli-McQuack",
-    photo: "../public/images/hollyhock.png",
-    scores: []
-  },
-  {
-    name: "Character Actress Margo Martindale",
-    photo: "../public/images/margo-martindale.png",
-    scores: []
-  },
-  {
-    name: "Vincent Adultman",
-    photo: "../public/images/vincent-adultman.png",
-    scores: []
-  },
-  {
-    name: "Sarah Lynn",
-    photo: "../public/images/sarah-lynn.png",
-    scores: []
-  },
-  {
-    name: "Pickles Aplenty",
-    photo: "../public/images/pickles-aplenty.png",
-    scores: []
-  },
-  {
-    name: "Sebastian St. Clair",
-    photo: "../public/images/sebastian-st-clair.png",
-    scores: []
-  },
-  {
-    name: "Lenny Turteltaub",
-    photo: "../public/images/lenny.png",
-    scores: []
-  },
-  {
-    name: "Woodchuck Coodchuck-Berkowitz",
-    photo: "../public/images/woodchuck.png",
-    scores: []
-  },
-  {
-    name: "Judah Mannowdog",
-    photo: "../public/images/judah-mannowdog.png",
-    scores: []
-  }
-];
+// Declaring global variables
+var friends = "";
+var bestDifference = 100;
+var bestFriend = "";
 
-// export { friends };
-// module.exports = friends;
-
+// This was added to the HTML for making a number and word value on the screen
+// showing where the slider was
 function updateRangeText(val, question) {
   document.getElementById("range-number" + question).innerHTML = val;
   switch (val) {
@@ -96,19 +26,68 @@ function updateRangeText(val, question) {
   }
 }
 
+// Function taking difference of absolute values of two passed in arrays,
+// adding the total together to ger a final 'differenceTotal' variable
 function compareArrays(arrayOne, arrayTwo) {
   var differenceTotal = 0;
   for (var i = 0; i < arrayOne.length; ++i) {
     var difference = Math.abs(arrayOne[i] - arrayTwo[i]);
     differenceTotal += difference;
   }
-  //  return differenceTotal;
-  console.log(differenceTotal);
+  return differenceTotal;
 }
 
+// Clears both text fields, resets sliders, and resets number and name values
+function resetAllFields() {
+  document.getElementById("name").value = "";
+  document.getElementById("photo").value = "";
+
+  for (var i = 1; i < 11; i++) {
+    document.getElementById("range" + i).value = 3;
+  }
+
+  for (var i = 1; i < 11; i++) {
+    var newI = i.toString();
+    $("#range-number" + newI).text("3");
+    $("#range-text" + newI).text(" - Neutral");
+  }
+}
+
+// Get request grabbing information from the 'friends.js' file
+function getAllCharacters() {
+  $.get("/api/characters").then(function(data) {
+    friends = data;
+  });
+}
+
+// Added in the HTML to disable the submit button when closing the modal
+function disableSubmit() {
+  $("#submit-button").prop("disabled", true);
+}
+
+// Start of on page load function
 $(document).ready(function() {
+  // calling API for character information
+  getAllCharacters();
+
+  // disabling button by default
+  $("#submit-button").prop("disabled", true);
+
+  // disables button when both text fields are empty
+  $(".user-input").keyup(function() {
+    if ($("#name").val() == "" || $("#photo").val() == "") {
+      $("#submit-button").prop("disabled", true);
+    } else {
+      $("#submit-button").prop("disabled", false);
+    }
+  });
+
+  // on click event for main GO button
   $("#submit-button").on("click", function(event) {
     event.preventDefault();
+
+    // making new character object to compare with other friends
+    // and to post to API
     var newCharacter = {
       name: $("#name")
         .val()
@@ -129,22 +108,38 @@ $(document).ready(function() {
         $("#range10").val()
       ]
     };
+    resetAllFields();
+
+    // posting new character to the API and console logging data
     $.post("/api/characters", newCharacter).then(function(data) {
       console.log("survey.html", data);
-      alert("Adding character");
     });
-    console.log(newCharacter.scores);
-    console.log(friends[0].scores);
-    // compareArrays(newCharacter.scores, friends[0].scores);
+
+    // getting a difference value for each friend when compared to current user
+    for (var i = 0; i < friends.length; i++) {
+      var currentDifference = compareArrays(
+        newCharacter.scores,
+        friends[i].scores
+      );
+
+      // setting the lowest difference value as 'best friend'
+      if (currentDifference < bestDifference) {
+        bestDifference = currentDifference;
+        bestFriend = friends[i];
+      }
+    }
+
+    // inputs friend name and photo on modal
+    $("#name-div").text(bestFriend.name);
+    $("#name-div").addClass("align-middle");
+    $("#photo-div").html(
+      "<img id='friend-photo' src='" + bestFriend.photo + "'>"
+    );
+
+    // resets difference variable and best friend object
+    // then grabs all characters again after new user was added
+    bestDifference = 100;
+    bestFriend = "";
+    getAllCharacters();
   });
 });
-
-// var firstArray = [1, 5, 3, 4, 4];
-// var secondArray = [3, 5, 4, 2, 1];
-
-// $(document).ready(function() {
-//   $("#submit-button").on("click", function() {
-//     event.preventDefault();
-//     compareArrays(friends[0].scores, friends[1].scores);
-//   });
-// });

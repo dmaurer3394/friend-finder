@@ -11,26 +11,6 @@ app.use(express.static("app/public"));
 require("./app/routing/apiRoutes.js")(app);
 require("./app/routing/htmlRoutes.js")(app);
 
-// app.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "/app/public/home.html"));
-// });
-
-// app.get("/survey", function(req, res) {
-//   res.sendFile(path.join(__dirname, "/app/public/survey.html"));
-// });
-
-// app.get("/api/characters", function(req, res) {
-//   return res.json(friends);
-// });
-
-// app.post("/api/characters", function(req, res) {
-//   console.log("POST TEST");
-//   var newCharacter = req.body;
-//   console.log(newCharacter);
-//   friends.push(newCharacter);
-//   res.json(newCharacter);
-// });
-
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
   console.log("http://localhost:" + PORT);

@@ -18,7 +18,6 @@
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="front-end.js"></script>
-    <script src="../server.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </head>
 
@@ -30,12 +29,12 @@
         <h2>About You</h2>
         <div class="form-group">
           <label>Name</label>
-          <input type="text" class="form-control" id="name" />
+          <input type="text" class="form-control user-input" id="name" />
           <small id="name-sm" class="form-text text-muted">Required</small>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Link to photo</label>
-          <input type="text" class="form-control" id="photo" />
+          <input type="text" class="form-control user-input" id="photo" />
           <small id="password-sm" class="form-text text-muted">Required</small>
         </div>
       </form>
@@ -217,7 +216,13 @@
           />
         </div>
         <br />
-        <button class="btn btn-outline-dark" id="submit-button" type="submit">
+        <button
+          class="btn btn-outline-dark"
+          id="submit-button"
+          type="submit"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
+        >
           Go
         </button>
       </form>
@@ -228,5 +233,48 @@
     <a class="btn btn-link" href="https://github.com/dmaurer3394/friend-finder"
       ><i class="fab fa-github"></i> Link to GitHub Repo</a
     >
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">
+              Your best match was...
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6 text-center" id="name-div">Name</div>
+              <div class="col sm-6" id="photo-div">Image</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="close-button"
+              data-dismiss="modal"
+              onclick="disableSubmit()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
